@@ -18,38 +18,23 @@ int romanCharToInt(char ch)
         return 500;
     case 'M':
         return 1000;
+    default:
+        return 0;
     }
-
-    return 0;
 }
 
 int romanToInt(char *s)
 {
     int answer = 0;
 
-    char cache[3] = {};
-    int count = 0;
-
-    for (int i = 0;; i++)
+    for (int i = 0; s[i] != '\0'; i++)
     {
-        if (count == 0 || cache[0] == s[i])
-        {
-            cache[count++] = s[i];
-        }
+        int value = romanCharToInt(s[i]);
+
+        if (value < romanCharToInt(s[i + 1]))
+            answer -= value;
         else
-        {
-            int value = romanCharToInt(cache[0]) * count;
-            if (romanCharToInt(s[i]) > value)
-                answer -= value;
-            else
-                answer += value;
-
-            count = 0;
-            cache[count++] = s[i];
-        }
-
-        if (s[i] == '\0')
-            break;
+            answer += value;
     }
 
     return answer;
