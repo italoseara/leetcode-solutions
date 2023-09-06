@@ -1,7 +1,7 @@
 // https://leetcode.com/problems/is-subsequence/
 
 #include <stdbool.h>
-#include <strings.h>
+#include <string.h>
 
 bool isSubsequence(char *s, char *t)
 {
